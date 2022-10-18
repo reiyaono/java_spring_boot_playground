@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.demo.login.domain.model.GroupOrder;
 import com.example.demo.login.domain.model.SignupForm;
 
 @Controller
@@ -53,15 +54,20 @@ public class SignupController {
      * ユーザー登録画面のPOSTメソッド用処理.
      */
     @PostMapping("/signup")
-    public String postSignUp(@ModelAttribute @Validated SignupForm form, 
-    						BindingResult bindingResult, 
-    						Model model) {
-    	
-    	if (bindingResult.hasErrors()) {
-    		return getSignUp(form, model);
-    	}
-    	
-    	System.out.println(form);
+    public String postSignUp(@ModelAttribute @Validated(GroupOrder.class) SignupForm form,
+            BindingResult bindingResult,
+            Model model) {
+
+        // 入力チェックに引っかかった場合、ユーザー登録画面に戻る
+        if (bindingResult.hasErrors()) {
+
+            // GETリクエスト用のメソッドを呼び出して、ユーザー登録画面に戻ります
+            return getSignUp(form, model);
+
+        }
+
+        // formの中身をコンソールに出して確認します
+        System.out.println(form);
 
         // login.htmlにリダイレクト
         return "redirect:/login";
