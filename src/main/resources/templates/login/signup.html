@@ -21,8 +21,14 @@
                 <tr>
                     <th class="active col-sm-3">ユーザID</th>
                     <td>
-                        <div class="form-group">
+                        <div class="form-group"
+                        	th:classappend="${#fields.hasErrors('userId')}?'has-error'">
                             <input type="text" class="form-control" th:field="*{userId}" />
+                            <span class="text-danger"
+                            	th:if="${#fields.hasErrors('userId')}"
+                            	th:errors="*{userId}">
+                            	userId error
+                            </span>
                         </div>
                     </td>
                 </tr>
@@ -30,16 +36,28 @@
                 <tr>
                     <th class="active">パスワード</th>
                     <td>
-                        <div class="form-group">
+                        <div class="form-group"
+                        	th:classappend="${#fields.hasErrors('password')}?'has-error'">
                             <input type="text" class="form-control" th:field="*{password}" />
                         </div>
+						<span class="text-danger"
+							th:if="${#fields.hasErrors('password')}"
+                        	th:errors="*{password}">
+                            password error
+                        </span>
                     </td>
                 </tr>
                 <!-- ユーザー名の入力エリア -->
                 <tr>
                     <th class="active">ユーザー名</th>
                     <td>
-                        <div class="form-group">
+                        <div class="form-group"
+                        th:classappend="${#fields.hasErrors('userName')}?'has-error'">
+							<span class="textdanger"
+								th:if="${#fields.hasErrors('userName')}"
+								th:errors="*{userName}">
+								userNameerror
+							</span>
                             <input type="text" class="form-control" th:field="*{userName}" />
                         </div>
                     </td>
@@ -48,8 +66,14 @@
                 <tr>
                     <th class="active">誕生日</th>
                     <td>
-                        <div class="form-group">
+                        <div class="form-group"
+                        th:classappend="${#fields.hasErrors('birthday')}?'has-error'">
                             <input type="text" class="form-control" placeholder="yyyy/MM/dd" th:field="*{birthday}" />
+							<span class="textdanger"
+								th:if="${#fields.hasErrors('birthday')}"
+								th:errors="*{birthday}">
+								birthdayerror
+							</span>
                         </div>
                     </td>
                 </tr>
@@ -57,8 +81,12 @@
                 <tr>
                     <th class="active">年齢</th>
                     <td>
-                        <div class="form-group">
+                        <div class="form-group"
+	                        th:classappend="${#fields.hasErrors('age')}?'has-error'">
                             <input type="text" class="form-control" th:field="*{age}"/>
+							<span class="textdanger" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">
+								ageerror
+							</span>
                         </div>
                     </td>
                 </tr>
@@ -73,6 +101,11 @@
                                     th:value="${item.value}"
                                     th:field="*{marriage}" />
                             </div>
+							<span class="textdanger"
+								th:if="${#fields.hasErrors('marriage')}"
+								th:errors="*{marriage}">
+								marriage error
+							</span>
                         </div>
                     </td>
                 </tr>
