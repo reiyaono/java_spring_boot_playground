@@ -23,7 +23,24 @@ public class UserDaoJdbcImpl implements UserDao {
 	
 	@Override
 	public int insertOne(User user) throws DataAccessException {
-		return 0;
+		int rowNumber = jdbc.update("INSERT INTO m_user(user_id,"
+				+ "password,"
+				+ "user_name,"
+				+ "birthday,"
+				+ "age,"
+				+ "marriage,"
+				+ "role)"
+				+ "VALUES(?, ?, ?, ?, ?, ?, ?)"
+				, user.getUserId()
+				, user.getPassword()
+				, user.getUserName()
+				, user.getBirthday()
+				, user.getAge()
+				, user.isMarriage()
+				, user.getRole()
+				);
+		// 戻り値、登録したレコード数
+		return rowNumber;
 	}
 	
 	@Override
