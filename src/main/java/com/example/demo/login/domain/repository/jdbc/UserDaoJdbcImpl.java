@@ -50,7 +50,19 @@ public class UserDaoJdbcImpl implements UserDao {
 	
 	@Override
 	public User selectOne(String userId) throws DataAccessException {
-		return null;
+		Map<String, Object> map = jdbc.queryForMap("SELECT * FROM m_user WHERE user_id = ?", userId);
+		
+		User user = new User();
+		
+		user.setUserId((String)map.get("user_id"));
+		user.setPassword((String)map.get("password"));
+		user.setUserName((String)map.get("user_name"));
+		user.setBirthday((Date)map.get("birthday"));
+		user.setAge((Integer)map.get("age"));
+		user.setMarriage((Boolean)map.get("marriage"));
+		user.setRole((String)map.get("role"));
+
+		return user;
 	}
 	
 	@Override
@@ -73,9 +85,6 @@ public class UserDaoJdbcImpl implements UserDao {
 			user.setAge((Integer)map.get("age"));
 			user.setMarriage((Boolean)map.get("marriage"));
 			user.setRole((String)map.get("role"));
-			System.out.println("-------------------");
-			System.out.println(user);
-			System.out.println("-------------------");
 			
 			userList.add(user);
 		}

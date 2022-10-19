@@ -33,4 +33,8 @@ public class UserService {
 	public List<User> selectMany() {
 		return dao.selectMany();
 	}
+	
+	public User selectOne(String userId) {
+		return dao.selectOne(userId);
+	}
 }
