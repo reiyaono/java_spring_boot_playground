@@ -56,10 +56,6 @@ public class HomeController {
 		
 		int count = userService.count();
 		model.addAttribute("userListCount", count);
-		System.out.println("-------------------");
-		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-		System.out.println("-------------------");
 		
 		return "login/homeLayout";
 	}
@@ -88,6 +84,30 @@ public class HomeController {
 			model.addAttribute("signupForm", form);
 		}
 		return "login/homeLayout";
+	}
+	
+	@PostMapping(value = "/userDetail", params = "update")
+	public String postUserDetailUpdate(@ModelAttribute SignupForm form,
+			Model model) {
+		
+		User user = new User();
+		
+		user.setUserId(form.getUserId());
+		user.setPassword(form.getPassword());
+		user.setUserName(form.getUserName());
+		user.setBirthday(form.getBirthday());
+		user.setAge(form.getAge());
+		user.setMarriage(form.isMarriage());
+		
+		boolean result = userService.updateOne(user);
+
+		if (result == true) {
+			model.addAttribute("result", "更新成功");
+		} else {
+			model.addAttribute("result", "更新失敗");
+		}
+		
+		return getUserList(model);
 	}
 	
 	@GetMapping("/userList/csv")
