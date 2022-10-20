@@ -114,7 +114,9 @@ public class UserDaoJdbcImpl implements UserDao {
 	
 	@Override
 	public int deleteOne(String userId) throws DataAccessException {
-		return 0;
+		int rowNumber = jdbc.update("DELETE FROM M_USER "
+				+ "WHERE user_id = ?", userId);
+		return rowNumber;
 	}
 	
 	@Override
