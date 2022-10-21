@@ -16,3 +16,13 @@ AfterThrowing メソッドが異常終了した場合だけ、AOPの処理を実
 ## @PathVariable
 @PathVariableアノテーションを付けると、渡されてきたパス（URL）の値を引数の変数に入れることができます。
 上記のコードでいうと、http://localhost:8080/userDetail/yamada@xxx.co.jpというURLでリクエストが来た場合、yamada@xxx.co.jpという値が引数のuserIdという変数に入れられます。
+
+
+## BeanPropertyRowMapper
+
+データベースから取得してきたカラム名と同一のフィールド名がクラスにあれば、自動でマッピングをしてくれます
+
+ただし、自動でマッピングするためには、以下のようなカラム名とフィールド名にする必要があります。
+
+■カラム名は単語をアンダースコアで区切る（スネークケース）例：user_id
+■フィールド名は２つ目の単語から大文字にする（キャメルケース）例：String userId;
