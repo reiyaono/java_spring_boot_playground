@@ -43,17 +43,6 @@
 						<tr>
 							<th class="active">ユーザ名</th>
 							<td>
-								<div class="form-group" th:classappend="${#fields.hasErrors('password')}?'has-error'">
-									<input type="text" class="form-control" th:field="*{password}"/>
-									<span class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
-										passworderror
-									</span>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<th class="active">ユーザ名</th>
-							<td>
 								<div class="form-group" th:classappend="${#fields.hasErrors('userName')}?'has-error'">
 									<input type="text" class="form-control" th:field="*{userName}"/>
 									<span class="text-danger" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}">
