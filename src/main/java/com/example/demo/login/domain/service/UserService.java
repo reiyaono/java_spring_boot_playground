@@ -21,7 +21,7 @@ public class UserService {
 	//	@Qualifier("UserDaoJdbcImpl3")
 
 	@Autowired
-	@Qualifier("UserDaoJdbcImpl")
+	@Qualifier("UserDaoNamedJdbcImpl")
 	UserDao dao;
 	
 	// insert用メソッド
