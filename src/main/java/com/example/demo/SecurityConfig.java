@@ -58,6 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/css/**").permitAll() //cssへのアクセス許可
 				.antMatchers("/login").permitAll() //ログインページは直リンクOK
 				.antMatchers("/signup").permitAll() //ユーザー登録画面は直リンクOK
+				.antMatchers("/admin").hasAuthority("ROLE_ADMIN")
 				.anyRequest().authenticated();
 		
 		http
@@ -76,7 +77,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.logoutSuccessUrl("/login");
 			
 		
-		http.csrf().disable();
+		//	http.csrf().disable();
 	}
 	
 	@Override
