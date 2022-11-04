@@ -7,7 +7,6 @@ public class Main {
 	public static void main(String[] args) {
 		
 		Factory factory = new PcFactory();
-		System.out.println("hogeeeeeee");
 		
 		Product pc1 = factory.create("A001");
 		Product pc2 = factory.create("A002");
